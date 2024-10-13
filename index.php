@@ -32,18 +32,24 @@
 
         ];
 
-        function filterbyAuthor($books,$author){
+        function filter($items,$fn){
             $filteredArray = [];
-            foreach($books as $book){
-                if($book['author'] === $author){
-                    $filteredArray[] = $book;
+            foreach($items as $item){
+                if($fn($item)){
+                    $filteredArray[]=$item;
                 }
             }
 
             return $filteredArray;
         }
-    
+
+        $filteredBooks = filter($books,function($book){
+            return $book['releaseYear'] < 2000;
+        });
+     
     ?>
+
+        
     
     <h1>
 
@@ -51,8 +57,8 @@
             
     </h1>   
     <ul>
-        <?php foreach(filterbyAuthor($books,"batista") as $book) : ?>
-            <ul>
+        <?php foreach($filteredBooks as $book) : ?>
+            
                 
                 <li>
                     <a href="<?= $book['URL']; ?>">
@@ -60,7 +66,7 @@
                     </a> 
                 </li>
 
-            </ul>
+        
 
         
         <?php endforeach ?>
