@@ -1,21 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <style>
-        /* body{
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-
-        } */
-    </style>
-</head>
-<body>
-    <?php
+<?php
        $books= [
         [
             'name'=>'Book 1',
@@ -24,53 +7,39 @@
             'URL'=>'johncena@example.com'
         ],
         [
-            'name'=>'Book 2',
+            'name'=>'Book 2.5',
             'author'=>'batista',
             'releaseYear'=>1969,
+            'URL'=>'batista@example.com'
+        ],
+        [
+            'name'=>'Book 2',
+            'author'=>'batista',
+            'releaseYear'=>1970,
             'URL'=>'batista@example.com'
         ]
 
         ];
 
-        function filter($items,$fn){
-            $filteredArray = [];
-            foreach($items as $item){
-                if($fn($item)){
-                    $filteredArray[]=$item;
-                }
-            }
+        // function filter($items,$fn){
+        //     $filteredArray = [];
+        //     foreach($items as $item){
+        //         if($fn($item)){
+        //             $filteredArray[]=$item;
+        //         }
+        //     }
 
-            return $filteredArray;
-        }
+        //     return $filteredArray;
+        // }
 
-        $filteredBooks = filter($books,function($book){
-            return $book['releaseYear'] < 2000;
+        $filteredBooks = array_filter($books,function($book){
+            return $book['releaseYear'] < 1970 and $book['releaseYear'] > 1968 ;
         });
+
+
+require "index.view.php";
      
-    ?>
+?>
 
-        
-    
-    <h1>
 
-    Recommended books author
-            
-    </h1>   
-    <ul>
-        <?php foreach($filteredBooks as $book) : ?>
-            
-                
-                <li>
-                    <a href="<?= $book['URL']; ?>">
-                            <?= $book['name']; ?>
-                    </a> 
-                </li>
 
-        
-
-        
-        <?php endforeach ?>
-    
-    </ul> 
-</body>
-</html>
